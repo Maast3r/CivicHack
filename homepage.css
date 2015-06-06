@@ -1,0 +1,16 @@
+body{
+	background-image: url("logo.gif");
+	background-color: #e5e5e5;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+	margin: 0 auto;
+}
+
+#button_block {
+	display: inline;
+}
+
+h1{
+	text-align: center;
+}

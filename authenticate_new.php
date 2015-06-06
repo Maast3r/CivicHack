@@ -2,48 +2,38 @@
 session_start();
 
 // Make sure all information is entered
-if(!isset($_POST['clientfirstname'], $_POST['clientlastname'], $_POST['clientSSN'], $_POST['form_token'])){
+if(!isset($_POST['clientfirstname'], $_POST['clientlastname'], $_POST['clientSSN'])){
 	$message = "Please enter a valid first name, a valid last name, and a valid social security number.";
 }
-
-// Sanitize each of the input fields, we don't want hackers
-$firstname = filter_var($_POST['clientfirstname'], FILTER_SANITIZE_STRING);
-$lastname = filter_var($_POST['clientlastname'], FILTER_SANITIZE_STRING);
-$ssn = filter_var($_POST['clientSSN'], FILTER_SANITIZE_STRING);
 
 // MySQL info
 $hostname = 'localhost';
 $username = 'root'; // Jeremiah, replace this with your MySQL username
-$password = 'password'; // Jeremiah, replace this with your MySQL password
-$db_name = 'database' // Jeremiah, replace this with the name of the database
+$password = ''; // Jeremiah, replace this with your MySQL password
+$db_name = 'fssa mock_data'; // Jeremiah, replace this with the name of the database
 
-// Now for the authentication part
-try{
-	// I dunno man, just look at the link in FSSA/where_we_get_info.txt
-	$db_head = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
-	$db_head->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION)
-	// SQL statement
-	$sql = $db_head->prepare("INSERT INTO user_information (first_name, last_name, ssn) VALUES ($firstname, $lastname, $ssn)");
-	$sql->execute();
-	// Success!
-	$message = "New user added.";
+// Connect to the MySQL database
+$con = mysqli_connect($hostname, $username, $password) or die("Could not log into server.");
+mysqli_select_db($con, $db_name) or die("Could not connect to database.");
 
-	// Print the message, hang out for five seconds, then redirect
-	echo $message;
-	echo "This page will redirect in five seconds.";
-	// 5, 4, 3, 2, 1, action!
-	sleep(5);
-	header("Location: dashboard.php");
-}catch(Exception $e){
-	$message = "We were unable to process your request.  Please try again."
+// Sanitize each of the input fields, we don't want hackers
+$first_name = mysqli_real_escape_string($con, $_POST['clientfirstname']);
+$last_name = mysqli_real_escape_string($con, $_POST['clientfirstname']);
+$address = mysqli_real_escape_string($con, $_POST['address']);
+$zip = mysqli_real_escape_string($con, $_POST['zipcode']);
+$ssn = mysqli_real_escape_string($con, $_POST['clientSSN']);
+$medicaid = mysqli_real_escape_string($con, $_POST['medicaid']);
 
-	// Print the message, hang out for five seconds, then redirect
-	echo $message;
-	echo "This page will redirect in five seconds.";
-	// 5, 4, 3, 2, 1, action!
-	sleep(5);
-	header("Location: newClient.php");
-}
+
+// Query the database
+$sql =  "CALL `ADD_USER`(\"".$address."\", \"".$first_name."\", \"".$last_name."\", \"".$zip."\",\"".$ssn."\",\"".$medicaid."\")";
+$query = mysqli_query($con, $sql) or die(mysqli_error($con));
+
+// Success!
+echo "New user added.  This page will redirect in five seconds.";
+$_SESSION['ssn'] = $ssn;
+header("Location: dashboard.php");
+mysqli_close($con);
 
 ?>
 
@@ -67,6 +57,6 @@ if($_GET['login']){
 		echo "Wrong details";
 	}
 }
-
+*/
 ?>
 -->
