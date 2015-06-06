@@ -12,6 +12,8 @@ $db_name = 'fssa mock_data'; // Jeremiah, replace this with the name of the data
 $con = mysqli_connect($hostname, $username, $password) or die("Could not log into server.");
 mysqli_select_db($con, $db_name) or die("Could not connect to database.");
 
+date_default_timezone_set('America/New_York'); 
+
 $reasons = implode(',', $_POST['need']);
 $date = date('Y-m-d');
 $time = date('H:i:s');
