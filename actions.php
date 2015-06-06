@@ -1,3 +1,36 @@
+<?php
+// Start session
+session_start();
+
+// MySQL info
+$hostname = 'localhost';
+$username = 'root'; // Jeremiah, replace this with your MySQL username
+$password = ''; // Jeremiah, replace this with your MySQL password
+$db_name = 'fssa mock_data'; // Jeremiah, replace this with the name of the database
+
+// Connect to the MySQL database
+$con = mysqli_connect($hostname, $username, $password) or die("Could not log into server.");
+mysqli_select_db($con, $db_name) or die("Could not connect to database.");
+
+$reasons = implode(',', $_POST['need']);
+$date = date('Y-m-d');
+$time = date('H:i:s');
+
+$medi_sql = "CALL `GET_MEDICAID_NUMBER`(\"".$_SESSION['ssn']."\")";
+$medi_query = mysqli_query($con, $medi_sql) or die(mysqli_error($con));
+$m;
+while($medicaid = mysqli_fetch_array($medi_query)) {
+	$m = $medicaid[0];
+} 
+mysqli_close($con);
+$con = mysqli_connect($hostname, $username, $password) or die("Could not log into server.");
+mysqli_select_db($con, $db_name) or die("Could not connect to database.");
+// Query the database to add date and time of visit
+$sql_date =  "CALL `ADD_VISIT`(\"".$_SESSION['ssn']."\", \"".$m."\", \"".$reasons."\", \"".$date."\",\"".$time."\")";
+$query_date = mysqli_query($con, $sql_date) or die(mysqli_error($con));
+
+?>
+
 <!DOCTYPE html>
 
 <html>
@@ -31,5 +64,9 @@
 			<?php }if(in_array("documents", $_POST['need'])){ ?>
 			<h2>Please go to the kiosk with the Documents sign.</h2></span>
 		<?php } ?>
+		<br/>
+		<span id="button_block"> 
+			<button type="button" id='new_form' onclick="Javascript:window.location.href = 'logout.php';">Logout</button> 
+		</span>
 	</body>
 </html>

@@ -20,7 +20,7 @@
 session_start();
 if(isset($_SESSION['ssn'])){ 
 	header("Location: dashboard.php");
-<?php }else{ ?>
+}else{ ?>
 	
 	<body>
 		<h1>I am a:</h1>

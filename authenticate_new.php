@@ -23,9 +23,10 @@ $address = mysqli_real_escape_string($con, $_POST['address']);
 $zip = mysqli_real_escape_string($con, $_POST['zipcode']);
 $ssn = mysqli_real_escape_string($con, $_POST['clientSSN']);
 $medicaid = mysqli_real_escape_string($con, $_POST['medicaid']);
+$reason = mysqli_real_escape_string($con, $_POST['reason']);
+$date = date('Y/m/d');
 
-
-// Query the database
+// Query the database to add user info
 $sql =  "CALL `ADD_USER`(\"".$address."\", \"".$first_name."\", \"".$last_name."\", \"".$zip."\",\"".$ssn."\",\"".$medicaid."\")";
 $query = mysqli_query($con, $sql) or die(mysqli_error($con));
 
@@ -36,27 +37,3 @@ header("Location: dashboard.php");
 mysqli_close($con);
 
 ?>
-
-
-
-<!-- probably not necessary -->
-<!--
-
-<?php
-/*
-session_start();
-//don't require 'your' fields (only used if someone else is coming for them)
-if($_GET['login']){
-	if($_POST['firstname'] == 'FIRSTNAME' && $_POST['lastname'] == 'LASTNAME' && $_POST['ssn'] == 'SSN'  
-		&& $_POST['clientfirstname'] == 'CLIENTFIRSTNAME' && $_POST['clientlastname'] == 'CLIENTLASTNAME' && $_POST['clientSSN'] == 'CLIENTSSN' 
-		&& $_POST['vote'] == 'VOTE'){
-		$_SESSION['loggedin'] = 1;
-		header("Location: dashboard.php");
-		exit;
-	}else{
-		echo "Wrong details";
-	}
-}
-*/
-?>
--->

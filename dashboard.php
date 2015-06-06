@@ -22,7 +22,7 @@ session_start();
 if(!isset($_SESSION['ssn'])){ 
 	echo "You are not logged in.  Please log in to view your dashboard.";
 ?>
-	<a href="returningClient.php">Login</a>
+	<br><a href="returningClient.php">Login</a>
 <?php }else{ ?>
 
 	<body>
@@ -33,21 +33,9 @@ if(!isset($_SESSION['ssn'])){
 			<div class="checkbox"><input type="checkbox" name="need[]" id="request" value="question"> <h5>I have a specific case question and need to see a case worker.</h5></div><br/>
 			<div class="checkbox"><input type="checkbox" name="need[]" id="request" value="benefits"> <h5>I want to apply for benefits.</h5></div><br/>
 			<div class="checkbox"><input type="checkbox" name="need[]" id="request" value="documents"> <h5>I want to scan in documents.</h5></div><br/>
-			<input type="submit" value="Submit" onclick="goToDirections();" class="btn btn-default">
+			<input type="submit" value="Submit" class="btn btn-default">
 		</form>
-		<script type="text/javascript">
-			function goToDirections(){
-				var checkedValues = $('input:checkbox:checked').map(function() { return this.value; }).get();
-				var st = "?";
-				for (var i = 0; i < checkedValues.length; i++) {
-					if (i > 0) {
-						st += "-";
-					};
-					st += checkedValues[i];
-				}
-				window.location.replace("directions.php" + st);
-			}
-		</script>
+		<button type="button" id='new_form' onclick="Javascript:window.location.href = 'logout.php';">Logout</button> 
 	</body>
 </html>
 <?php } ?>

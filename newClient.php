@@ -27,6 +27,7 @@ those strings compare to the literal strings 'FIRSTNAME', 'LASTNAME', etc. -->
 			<span class="inputField"><span class="inputFieldName">Client Street Address:</span> <input type="text" name="address" /></span><br/><br/>
 			<span class="inputField"><span class="inputFieldName">Client Zip Code:</span> <input type="text" name="zipcode" /></span><br/><br/>
 			<span class="inputField"><span class="inputFieldName">Client Medicaid Number:</span> <input type="password" name="medicaid" /></span><br/>
+			<input class="btn btn-success" type="submit"/><br/>
 			<span class="inputField"><h3>Only fill out the following fields if you are applying on behalf of someone else</h3><br/></span>
 			<span class="inputField"><span class="inputFieldName">Your First name (if different from above):</span> <input type="text" name="firstname" /></span><br/><br/>
 			<span class="inputField"><span class="inputFieldName">Your Last name(if different from above):</span><input type="text" name="lastname" /></span><br/><br/>
@@ -38,7 +39,7 @@ those strings compare to the literal strings 'FIRSTNAME', 'LASTNAME', etc. -->
 			</span>
 			<br/>
 			<br />
-			<input class="btn btn-success" type="submit"/>
+			
 		</form>
 	</body>
 

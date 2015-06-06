@@ -44,7 +44,8 @@ if(!$query){
 
 echo "You have successfully logged on.  This page will redirect in five seconds.";
 $_SESSION['ssn'] = $ssn;
-// 5, 4, 3, 2, 1, action!
+
+	// 5, 4, 3, 2, 1, action!
 sleep(5);
 header("Location: dashboard.php");
 
@@ -52,27 +53,3 @@ header("Location: dashboard.php");
 mysqli_close($con);
 
 ?>
-
-
-
-<!-- probably not necessary -->
-<!--
-
-<?php
-/*
-session_start();
-//don't require 'your' fields (only used if someone else is coming for them)
-if($_GET['login']){
-	if($_POST['firstname'] == 'FIRSTNAME' && $_POST['lastname'] == 'LASTNAME' && $_POST['ssn'] == 'SSN'  
-		&& $_POST['clientfirstname'] == 'CLIENTFIRSTNAME' && $_POST['clientlastname'] == 'CLIENTLASTNAME' && $_POST['clientSSN'] == 'CLIENTSSN' 
-		&& $_POST['vote'] == 'VOTE'){
-		$_SESSION['loggedin'] = 1;
-		header("Location: dashboard.php");
-		exit;
-	}else{
-		echo "Wrong details";
-	}
-}
-*/
-?>
--->

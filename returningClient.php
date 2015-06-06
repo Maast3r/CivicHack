@@ -23,6 +23,7 @@
 			<span class="inputField"><span class="inputFieldName">Client Social Security Number:</span> <input type="password" name="clientSSN" /></span><br/>
 			<span class="inputField"><h4>OR</h4></span>
 			<span class="inputField"><span class="inputFieldName">Client RID: </span><input type="password" name="clientRID" /></span><br/>
+			<input class="btn btn-success" type="submit"/><br />
 			<h3>Only fill out the following fields if you are here on behalf of someone else</h3><br/>
 			<span class="inputField"><span class="inputFieldName">Your First name (if different from above):</span> <input type="text" name="firstname" /></span><br/><br/>
 			<span class="inputField"><span class="inputFieldName">Your Last name(if different from above):</span><input type="text" name="lastname" /></span><br/><br/>
@@ -34,7 +35,6 @@
 			</span>
 			<br/>
 			<br />
-			<input class="btn btn-success" type="submit"/>
 		</form>
 	</body>
 
